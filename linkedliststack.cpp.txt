@@ -1,0 +1,123 @@
+#include <iostream.h>
+#include<conio.h>
+#include<process.h>
+#include<stdlib.h>
+#define  NULL  0
+struct node
+{
+int data;
+struct node *ptr;
+};
+struct node* top = NULL;
+struct node* temp;
+
+
+void push(int n)
+{
+temp=new node;
+temp->data = n;
+temp->ptr = top;
+top = temp;
+}
+
+
+void pop() 
+{
+if(top==NULL)
+cout<<"Stack empty"<<endl;
+else
+{
+cout<<"The popped element is "<< top->data <<endl;
+top = top->ptr;
+}
+}
+
+
+
+void display() 
+{
+if(top==NULL)
+cout<<"stack is empty";
+else
+{
+temp = new node;
+temp = top;
+cout<<"Stack elements are: ";
+while (temp != NULL)
+{
+cout<< temp->data <<" ";
+temp = temp->ptr;
+}
+}
+cout<<endl;
+}
+
+
+
+void clear()
+{
+if(top==NULL)
+{
+cout<<"Stack is empty\n";
+}
+else
+{
+while(top!=NULL)
+{
+temp=top;
+top=top->ptr;
+delete temp;
+}
+cout<<"Stack cleared\n";
+}
+}
+
+
+
+void topel()
+{
+if(top==NULL)
+{
+cout<<"Stack is empty\n";
+}
+else
+{
+cout<<"Top element of stack is :"<<top->data<<endl;
+}
+}
+
+
+
+int main()
+{
+clrscr();
+int ch, n;
+cout<<"1.Push in stack\n 2.Pop from stack\n 3.Display \n 4.Clear \n 5.Top element\n 6.Exit\n ";
+do
+{
+cout<<"Enter your choice: "<<endl;
+cin>>ch;
+switch(ch)
+ {
+case 1: {
+   cout<<"Enter value to be pushed:"<<endl;
+   cin>>n;
+   push(n);
+   break;
+}
+case 2: pop();
+   break;
+case 3: display();
+   break;
+case 4:  clear();
+ break;
+case 5:  topel();
+  break;
+  case 6:  exit(0);
+default:  cout<<"Invalid Choice"<<endl;
+ }
+}while(ch!=9);
+getch();
+return 0;
+}
+
